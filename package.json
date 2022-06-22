@@ -1,0 +1,39 @@
+{
+  "name": "context3typescript",
+  "version": "1.0.0",
+  "description": "Initial setup of the project.  Created with React, TypeScript, Vite, React Router, and ContextAPI.",
+  "main": "index.tsx",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/indigomx9/context3typescript.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/indigomx9/context3typescript/issues"
+  },
+  "homepage": "https://github.com/indigomx9/context3typescript#readme",
+  "dependencies": {
+    "bootstrap": "^5.1.3",
+    "react": "^18.2.0",
+    "react-bootstrap": "^2.4.0",
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^6.3.0"
+  },
+  "devDependencies": {
+    "@types/node": "^18.0.0",
+    "@types/react": "^18.0.14",
+    "@types/react-dom": "^18.0.5",
+    "@vitejs/plugin-react": "^1.3.2",
+    "typescript": "^4.7.4",
+    "vite": "^2.9.12"
+  }
+}
+
+
