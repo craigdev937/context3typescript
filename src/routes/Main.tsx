@@ -1,4 +1,5 @@
 import React from "react";
+import { Navbar } from "./Navbar";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Container } from "react-bootstrap";
 import { Home } from "../components/Home";
@@ -8,6 +9,7 @@ import { Store } from "../components/Store";
 export const Main = (): JSX.Element => (
     <BrowserRouter>
         <React.Fragment>
+            <Navbar />
             <Container className="mb-4">
                 <Routes>
                     <Route path="/" element={<Home />} />

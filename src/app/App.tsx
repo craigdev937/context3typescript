@@ -5,7 +5,9 @@ import { Main } from "../routes/Main";
 export const App = (): JSX.Element => {
     return (
         <React.Fragment>
-            <Main />
+            <section className="bg-secondary">
+                <Main />
+            </section>
         </React.Fragment>
     );
 };
