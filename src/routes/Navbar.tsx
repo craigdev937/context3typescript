@@ -1,7 +1,8 @@
 import React from "react";
-import cart2 from "../img/cart2.svg"
+import cart2 from "/img/cart2.svg"
 import { NavLink } from "react-router-dom";
-import { Button, Container, Nav, Navbar as NavbarBS } from "react-bootstrap";
+import { Button, Container, Nav, 
+    Navbar as NavbarBS } from "react-bootstrap";
 
 export const Navbar = (): JSX.Element => (
     <React.Fragment>
@@ -36,8 +37,7 @@ export const Navbar = (): JSX.Element => (
                                 bottom: "0", 
                                 right: "0", 
                                 transform: "translate(25%, 25%)",
-                            }}
-                            >
+                            }}>3
                         </aside>
                 </Button>
             </Nav>

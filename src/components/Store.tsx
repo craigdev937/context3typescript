@@ -1,10 +1,19 @@
 import React from "react";
+import data from "../data/items.json";
+import { Row, Col } from "react-bootstrap";
+import { StoreItem } from "./StoreItem";
 
 export const Store = (): JSX.Element => {
     return (
         <React.Fragment>
             <h1>Store</h1>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloribus, quam fugiat vel cumque culpa, alias officia, error labore dolorem vitae ullam! Quis dolores consequatur a adipisci odio aspernatur voluptate veniam?</p>
+            <Row md={2} xs={1} lg={3} className="g-3">
+                {data.map((item) => (
+                    <Col key={item.id}>
+                        <StoreItem {...item}/>
+                    </Col>
+                ))}
+            </Row>
         </React.Fragment>
     );
 };
