@@ -1,5 +1,6 @@
 import React from "react";
 import { Button, Card } from "react-bootstrap";
+import { useCart } from "../context/SContext";
 import { formatCur } from "../hooks/Currency";
 
 type Props = {
@@ -11,7 +12,13 @@ type Props = {
 
 export const StoreItem = 
 ({ id, name, price, imgUrl }: Props) => {
-    const quantity = 0;
+    const { 
+        getItemQuantity, increaseCartQty, 
+        decreaseCartQty, removeFromCart 
+    } = useCart();
+
+    const quantity = getItemQuantity(id);
+    
     return (
         <React.Fragment>
             <Card className="h-100">
@@ -34,7 +41,11 @@ export const StoreItem =
                     </Card.Title>
                     <section className="mt-auto">
                         {quantity === 0 ? (
-                            <Button className="w-100">+ Add To Cart</Button>
+                            <Button 
+                                className="w-100" 
+                                onClick={() => increaseCartQty(id)}
+                                >+ Add To Cart
+                            </Button>
                         ) : 
                             <aside 
                                 className="d-flex 
@@ -46,18 +57,24 @@ export const StoreItem =
                                             justify-content-center"
                                             style={{ gap: ".5rem" }}
                                             >
-                                                <Button>-</Button>
+                                                <Button
+                                                    onClick={() => decreaseCartQty(id)}
+                                                    >-</Button>
                                                 <div>
                                                     <span 
                                                         className="fs-3"
                                                         >{quantity}
                                                     </span>in cart
                                                 </div>
-                                                <Button>+</Button>
+                                                <Button
+                                                    onClick={() => increaseCartQty(id)}
+                                                    >+
+                                                </Button>
                                     </section>
                                     <Button 
                                         variant="danger" 
                                         size="sm"
+                                        onClick={() => removeFromCart(id)}
                                         >Remove
                                     </Button>
                             </aside>}

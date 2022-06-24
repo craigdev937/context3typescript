@@ -1,13 +1,16 @@
 import React from "react";
 import "./App.css";
 import { Main } from "../routes/Main";
+import { CartProvider } from "../context/SContext";
 
 export const App = (): JSX.Element => {
     return (
         <React.Fragment>
-            <section className="bg-secondary">
-                <Main />
-            </section>
+            <CartProvider>
+                <section className="bg-secondary">
+                    <Main />
+                </section>
+            </CartProvider>
         </React.Fragment>
     );
 };
