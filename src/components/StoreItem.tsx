@@ -1,5 +1,6 @@
 import React from "react";
-import { Card } from "react-bootstrap";
+import { Button, Card } from "react-bootstrap";
+import { formatCur } from "../hooks/Currency";
 
 type Props = {
     id: number,
@@ -10,9 +11,10 @@ type Props = {
 
 export const StoreItem = 
 ({ id, name, price, imgUrl }: Props) => {
+    const quantity = 0;
     return (
         <React.Fragment>
-            <Card>
+            <Card className="h-100">
                 <Card.Img 
                     variant="top" 
                     src={imgUrl} 
@@ -25,11 +27,46 @@ export const StoreItem =
                             justify-content-between 
                             align-items-baseline">
                                 <span className="fs-2">{name}</span>
-                                <span className="ms-2 text-muted">{price}</span>
+                                <span 
+                                    className="ms-2 text-muted"
+                                    >{formatCur(price)}
+                                </span>
                     </Card.Title>
+                    <section className="mt-auto">
+                        {quantity === 0 ? (
+                            <Button className="w-100">+ Add To Cart</Button>
+                        ) : 
+                            <aside 
+                                className="d-flex 
+                                align-items-center 
+                                flex-column" style={{ gap: ".5rem" }}>
+                                    <section 
+                                        className="d-flex 
+                                            align-items-center 
+                                            justify-content-center"
+                                            style={{ gap: ".5rem" }}
+                                            >
+                                                <Button>-</Button>
+                                                <div>
+                                                    <span 
+                                                        className="fs-3"
+                                                        >{quantity}
+                                                    </span>in cart
+                                                </div>
+                                                <Button>+</Button>
+                                    </section>
+                                    <Button 
+                                        variant="danger" 
+                                        size="sm"
+                                        >Remove
+                                    </Button>
+                            </aside>}
+                    </section>
                 </Card.Body>
             </Card>
         </React.Fragment>
     );
 };
+
+
 
