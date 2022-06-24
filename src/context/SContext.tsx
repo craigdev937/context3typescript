@@ -1,10 +1,19 @@
 import React from "react";
 
+type CartItem = {
+    id: number,
+    quantity: number
+};
+
 type CartProps = {
-   getItemQuantity: (id: number) => number,
-   increaseCartQty: (id: number) => void,
-   decreaseCartQty: (id: number) => void,
-   removeFromCart: (id: number) => void,
+    openCart: () => void,
+    closeCart: () => void,
+    getItemQuantity: (id: number) => number,
+    increaseCartQty: (id: number) => void,
+    decreaseCartQty: (id: number) => void,
+    removeFromCart: (id: number) => void,
+    cartQty: number,
+    cartItems: CartItem[]
 };
 
 const CartContext = React.createContext({} as CartProps);
@@ -12,18 +21,14 @@ export function useCart() {
     return React.useContext(CartContext);
 };
 
-type CartItem = {
-    id: number,
-    quantity: number
-};
-
 type Props = {
     children: React.ReactNode
 };
 
 export function CartProvider({ children }: Props) {
+    const [isOpen, setIsOpen] = React.useState(false);
     const [cartItems, setCartItems] = 
-        React.useState<CartItem[]>([]);
+        React.useState<CartItem[]>([]);    
 
     function getItemQuantity(id: number) {
         return cartItems.find(
@@ -75,12 +80,22 @@ export function CartProvider({ children }: Props) {
         })
     };
 
+    const cartQty = cartItems.reduce(
+        (quantity, item) => item.quantity + quantity, 0);
+
+    const openCart = () => setIsOpen(true);
+    const closeCart = () => setIsOpen(false);
+
     return (
         <CartContext.Provider value={{
             getItemQuantity,
             increaseCartQty,
             decreaseCartQty,
-            removeFromCart
+            removeFromCart,
+            openCart,
+            closeCart,
+            cartItems,
+            cartQty,
         }}>
             { children }
         </CartContext.Provider>
