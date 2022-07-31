@@ -1,5 +1,6 @@
 import React from "react";
 import { ShopCart } from "../containers/ShopCart";
+import { useLocalStorage } from "../hooks/Storage";
 
 type CartItem = {
     id: number,
@@ -29,7 +30,7 @@ type Props = {
 export function CartProvider({ children }: Props) {
     const [isOpen, setIsOpen] = React.useState(false);
     const [cartItems, setCartItems] = 
-        React.useState<CartItem[]>([]);    
+        useLocalStorage<CartItem[]>("cart", []);
 
     function getItemQuantity(id: number) {
         return cartItems.find(
